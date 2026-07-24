@@ -17,31 +17,44 @@
       overflow: hidden;
     }
 
-    picture,
-    img {
+    .banner {
       display: block;
       width: 100%;
+      height: auto;
     }
 
-    img {
-      height: auto;
+    #mobileBanner {
+      display: none;
     }
   </style>
 </head>
 
 <body>
 
-  <picture>
-    <source
-      media="(max-width: 768px)"
-      srcset="./mobile-banner.png"
-    >
+  <img
+    id="desktopBanner"
+    class="banner"
+    src="./desktop-banner.png?v=2"
+    alt="Desktop banner"
+  >
 
-    <img
-      src="./desktop-banner.png"
-      alt="Website banner"
-    >
-  </picture>
+  <img
+    id="mobileBanner"
+    class="banner"
+    src="./mobile-banner.png?v=2"
+    alt="Mobile banner"
+  >
+
+  <script>
+    const isMobile =
+      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+      navigator.maxTouchPoints > 1;
+
+    if (isMobile) {
+      document.getElementById("desktopBanner").style.display = "none";
+      document.getElementById("mobileBanner").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
