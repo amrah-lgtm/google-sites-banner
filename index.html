@@ -5,7 +5,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
   >
 
   <style>
@@ -18,13 +18,9 @@
     }
 
     .banner {
-      display: block;
+      display: none;
       width: 100%;
       height: auto;
-    }
-
-    #mobileBanner {
-      display: none;
     }
   </style>
 </head>
@@ -34,25 +30,45 @@
   <img
     id="desktopBanner"
     class="banner"
-    src="./desktop-banner.png?v=2"
+    src="./desktop-banner.png?v=5"
     alt="Desktop banner"
   >
 
   <img
     id="mobileBanner"
     class="banner"
-    src="./mobile-banner.png?v=3"
+    src="./mobile-banner.png?v=5"
     alt="Mobile banner"
   >
 
   <script>
-    const isMobile =
-      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
-      navigator.maxTouchPoints > 1;
+    function showCorrectBanner() {
+      const mobile =
+        window.innerWidth <= 768 ||
+        screen.width <= 768 ||
+        (window.visualViewport &&
+          window.visualViewport.width <= 768) ||
+        window.matchMedia("(max-width: 768px)").matches ||
+        /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-    if (isMobile) {
-      document.getElementById("desktopBanner").style.display = "none";
-      document.getElementById("mobileBanner").style.display = "block";
+      document.getElementById("desktopBanner").style.display =
+        mobile ? "none" : "block";
+
+      document.getElementById("mobileBanner").style.display =
+        mobile ? "block" : "none";
+    }
+
+    showCorrectBanner();
+
+    window.addEventListener("load", showCorrectBanner);
+    window.addEventListener("resize", showCorrectBanner);
+    window.addEventListener("orientationchange", showCorrectBanner);
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener(
+        "resize",
+        showCorrectBanner
+      );
     }
   </script>
 
