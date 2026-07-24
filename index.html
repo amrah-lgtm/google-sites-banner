@@ -1,39 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
 
-<style>
-body{
-    margin:0;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-.desktop{
-    width:100%;
-    display:block;
-}
-
-.mobile{
-    width:100%;
-    display:none;
-}
-
-@media (max-width:768px){
-    .desktop{
-        display:none;
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow: hidden;
     }
-    .mobile{
-        display:block;
-    }
-}
-</style>
 
+    picture,
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      height: auto;
+    }
+  </style>
 </head>
 
 <body>
 
-<img class="desktop" src="desktop-banner.png" alt="Desktop Banner">
-<img class="mobile" src="mobile-banner.png" alt="Mobile Banner">
+  <picture>
+    <source
+      media="(max-width: 768px)"
+      srcset="./mobile-banner.png"
+    >
+
+    <img
+      src="./desktop-banner.png"
+      alt="Website banner"
+    >
+  </picture>
 
 </body>
 </html>
