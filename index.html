@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+    margin:0;
+}
+
+.desktop{
+    width:100%;
+    display:block;
+}
+
+.mobile{
+    width:100%;
+    display:none;
+}
+
+@media (max-width:768px){
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:block;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<img class="desktop" src="desktop-banner.jpg">
+<img class="mobile" src="mobile-banner.jpg">
+
+</body>
+</html>
