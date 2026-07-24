@@ -5,22 +5,40 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1"
+    content="width=device-width, initial-scale=1.0"
   >
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html,
     body {
       margin: 0;
       padding: 0;
       width: 100%;
-      overflow: hidden;
     }
 
-    .banner {
-      display: none;
+    .desktop-banner,
+    .mobile-banner {
+      display: block;
       width: 100%;
       height: auto;
+    }
+
+    .mobile-banner {
+      display: none;
+    }
+
+    @media screen and (max-width: 900px) {
+      .desktop-banner {
+        display: none !important;
+      }
+
+      .mobile-banner {
+        display: block !important;
+      }
     }
   </style>
 </head>
@@ -28,49 +46,16 @@
 <body>
 
   <img
-    id="desktopBanner"
-    class="banner"
-    src="./desktop-banner.png?v=5"
+    class="desktop-banner"
+    src="./desktop-banner.png"
     alt="Desktop banner"
   >
 
   <img
-    id="mobileBanner"
-    class="banner"
-    src="./mobile-banner.png?v=5"
+    class="mobile-banner"
+    src="./mobile-banner.png"
     alt="Mobile banner"
   >
-
-  <script>
-    function showCorrectBanner() {
-      const mobile =
-        window.innerWidth <= 768 ||
-        screen.width <= 768 ||
-        (window.visualViewport &&
-          window.visualViewport.width <= 768) ||
-        window.matchMedia("(max-width: 768px)").matches ||
-        /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-
-      document.getElementById("desktopBanner").style.display =
-        mobile ? "none" : "block";
-
-      document.getElementById("mobileBanner").style.display =
-        mobile ? "block" : "none";
-    }
-
-    showCorrectBanner();
-
-    window.addEventListener("load", showCorrectBanner);
-    window.addEventListener("resize", showCorrectBanner);
-    window.addEventListener("orientationchange", showCorrectBanner);
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener(
-        "resize",
-        showCorrectBanner
-      );
-    }
-  </script>
 
 </body>
 </html>
